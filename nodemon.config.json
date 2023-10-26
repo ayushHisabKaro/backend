@@ -1,0 +1,22 @@
+{
+  "verbose": true,
+  "ignore": [
+    ".git",
+    "node_modules"
+  ],
+  "watch": [
+    "./src/**/*",
+    ".env",
+    "ormconfig.ts",
+    "nodemon.config.json",
+    ".env",
+    "package.json"
+  ],
+  "exec": [
+    "ts-node src/main.ts"
+  ],
+  "env": {
+    "SYNC_DB": false,
+    "PORT": 4000
+  }
+}

@@ -1,0 +1,36 @@
+import { WorkExperienceResponse } from 'src/types/responseData.types';
+import { DeepPartial, DeleteResult, InsertResult, Repository } from 'typeorm';
+import { CreateResumeDocument, CreateResumeLanguage, CreateResumeSkills, CreateResumeWorkExperience } from './dto/create-resume.dto';
+import { Resume } from './entities/resume.entity';
+import { ResumeDocument } from './entities/resumeDocument.entity';
+import { ResumeLanguage } from './entities/resumeLanguage.entity';
+import { ResumeSkill } from './entities/resumeSkills.entity';
+import ResumeWorkExperience from './entities/resumeWorkExperience';
+import ResumeEducation from './entities/resumeEducation.entity';
+export declare class ResumeService {
+    private resumeRepository;
+    private resumeLanguageRepository;
+    private resumeSkillsRepository;
+    private resumeDocumentRepository;
+    private resumeWorkExperienceRepository;
+    private resumeEducationRepository;
+    constructor(resumeRepository: Repository<Resume>, resumeLanguageRepository: Repository<ResumeLanguage>, resumeSkillsRepository: Repository<ResumeSkill>, resumeDocumentRepository: Repository<ResumeDocument>, resumeWorkExperienceRepository: Repository<ResumeWorkExperience>, resumeEducationRepository: Repository<ResumeEducation>);
+    create(data: DeepPartial<Resume>): Resume;
+    save(data: Resume): Promise<Resume>;
+    createOtherLanguages(data: DeepPartial<CreateResumeLanguage>[]): Promise<ResumeLanguage[]>;
+    createSkills(data: DeepPartial<CreateResumeSkills>[]): Promise<ResumeSkill[]>;
+    createDocuments(data: DeepPartial<CreateResumeDocument>[]): Promise<ResumeDocument[]>;
+    createWorkExperience(data: DeepPartial<CreateResumeWorkExperience>[]): Promise<ResumeWorkExperience[]>;
+    findAll(): Promise<Resume[]>;
+    findOne(id: number): Promise<Resume>;
+    findByUser(userId: number): Promise<Resume>;
+    update(id: number, data: DeepPartial<Resume>): Promise<import("typeorm").UpdateResult>;
+    deleteAndInsertOtherLanguages(_data: DeepPartial<ResumeLanguage>[], resume: Resume): Promise<InsertResult>;
+    deleteAndInsertSkills(_data: DeepPartial<ResumeSkill>[], resume: Resume): Promise<InsertResult>;
+    deleteAndInsertDocuments(_data: DeepPartial<ResumeDocument>[], resume: Resume): Promise<InsertResult>;
+    deleteAndInsertWorkExperience(_data: DeepPartial<ResumeWorkExperience>[], resume: Resume): Promise<InsertResult>;
+    saveResumeEducation(data: DeepPartial<ResumeEducation[]>): Promise<(DeepPartial<ResumeEducation> & ResumeEducation)[]>;
+    deleteAndInsertResumeEducation(_data: DeepPartial<ResumeEducation>[], resumeId: number): Promise<InsertResult>;
+    remove(id: number): Promise<DeleteResult>;
+    calculateWorkExperience(we: ResumeWorkExperience[]): WorkExperienceResponse;
+}

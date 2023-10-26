@@ -1,0 +1,32 @@
+{
+
+
+        "Bills":{
+            
+            "format1":{
+                "Condition":"(({Sno} or {Qty}) and {Hsn} )or ( {Sno} and  ( {Qty} or {Hsn no} ))",
+                "Abriviation":{
+                    "Sno":["srno","sr.\nno","s.no","sr.no","sr.\nno.","sr","sr.no","sl.\nno","sl\nno.","sr_no","sr\nno.","sno."],
+                    "Qty":["qtn","quantity","qty"],
+                    "Hsn":["hsn/sac","hsn","hsncode","hsnno"]
+                }
+
+            },
+            "format2":{
+                "Condition":"( ( {Total} or  {Amount}) and {Hsn} )  or ({Hsn} and ({Amount} or {Total}))",
+                "Abriviation":{
+                    "Sno":["sr no","sr.\nno","s.no","sr.no","sr.\nno.","sr","sr.no","sl.\nno","sl\nno.","sr_no"],
+                    "Qty":["qtn","quantity","qty"],
+                    "Hsn":["hsn/sac","hsn","hsncode","hsn"]
+                }
+            }
+        }
+}
+            
+            
+        
+
+
+
+
+

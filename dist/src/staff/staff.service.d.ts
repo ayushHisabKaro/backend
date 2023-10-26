@@ -1,0 +1,112 @@
+import { attendanceType } from '../types/entity.attribute.types';
+import { DeepPartial, InsertResult, Repository, UpdateResult } from 'typeorm';
+import AttendanceType from './entities/attendanceType.entity';
+import PayrollApplied from './entities/payrollApplied.entity';
+import Staff from './entities/staff.entity';
+import StaffAdvance from './entities/staffAdvance.entity';
+import StaffAttendance from './entities/staffAttendance.entity';
+import StaffMonthlyAdvance from './entities/staffMonthlyAdvance';
+import PayrollDefault from './entities/payrollDefault.entity';
+import StaffMonthlyAdvancePayment from './entities/staffMonthlyAdvancePayment';
+import { staffShortByTypes } from '../types/requestData.types';
+import StaffWeeklyOff from './entities/staffWeeklyOff.entity';
+import { MonthDetails } from '../types/responseData.types';
+export declare class StaffService {
+    private staffRepository;
+    private staffAdvanceRepository;
+    private staffMonthlyAdvanceRepository;
+    private staffMonthlyAdvancePaymentRepository;
+    private staffAttendanceRepository;
+    private attendanceTypeRepository;
+    private payrollAppliedRepository;
+    private payrollDefaultRepository;
+    private staffWeeklyOffRepository;
+    constructor(staffRepository: Repository<Staff>, staffAdvanceRepository: Repository<StaffAdvance>, staffMonthlyAdvanceRepository: Repository<StaffMonthlyAdvance>, staffMonthlyAdvancePaymentRepository: Repository<StaffMonthlyAdvancePayment>, staffAttendanceRepository: Repository<StaffAttendance>, attendanceTypeRepository: Repository<AttendanceType>, payrollAppliedRepository: Repository<PayrollApplied>, payrollDefaultRepository: Repository<PayrollDefault>, staffWeeklyOffRepository: Repository<StaffWeeklyOff>);
+    create(data: DeepPartial<Staff>): Promise<DeepPartial<Staff> & Staff>;
+    save(data: DeepPartial<Staff>): Promise<DeepPartial<Staff> & Staff>;
+    insert(data: DeepPartial<Staff>): Promise<InsertResult>;
+    createAdvance(data: DeepPartial<StaffAdvance[]>): Promise<(DeepPartial<StaffAdvance> & StaffAdvance)[]>;
+    createMonthlyAdvance(data: DeepPartial<StaffMonthlyAdvance>[]): Promise<(DeepPartial<StaffMonthlyAdvance> & StaffMonthlyAdvance)[]>;
+    createMonthlyAdvancePayment(data: DeepPartial<StaffMonthlyAdvancePayment>): Promise<DeepPartial<StaffMonthlyAdvancePayment> & StaffMonthlyAdvancePayment>;
+    findAdvanceWithPayment(staffId: number, month?: string): Promise<StaffAdvance[]>;
+    findMonthlyAdvanceWithPayment(staffId: number, month: string): Promise<StaffMonthlyAdvance[]>;
+    findOneMonthlyAdvanceWithPayment(staffMonthlyAdvanceId: number): Promise<StaffMonthlyAdvance>;
+    findOneMonthlyAdvanceWithPaymentWithUser(staffMonthlyAdvanceId: number): Promise<StaffMonthlyAdvance>;
+    createInstance(data: DeepPartial<Staff>): Staff;
+    createAttendanceInstance(data: DeepPartial<StaffAttendance>): StaffAttendance;
+    createAttendance(data: DeepPartial<StaffAttendance>): Promise<InsertResult>;
+    createManyAttendance(data: DeepPartial<StaffAttendance[]>): Promise<InsertResult>;
+    updateAttendance(id: number, data: DeepPartial<StaffAttendance>): Promise<UpdateResult>;
+    updateAdvance(id: number, data: DeepPartial<StaffAdvance>): Promise<UpdateResult>;
+    createAttendanceType(types: attendanceType[]): Promise<AttendanceType[]>;
+    findWeeklyOff(staffId: number, month: string): Promise<StaffWeeklyOff>;
+    saveWeeklyOff(data: DeepPartial<StaffWeeklyOff>): Promise<DeepPartial<StaffWeeklyOff> & StaffWeeklyOff>;
+    createPayrollDefault(data: DeepPartial<PayrollDefault>): Promise<DeepPartial<PayrollDefault> & PayrollDefault>;
+    createPayrollApplied(data: DeepPartial<PayrollApplied>): Promise<DeepPartial<PayrollApplied> & PayrollApplied>;
+    findPayrollApplied(staffId: number, month: string): Promise<PayrollApplied>;
+    findPayrollDefault(staffId: number, month: string): Promise<PayrollDefault>;
+    findAllPayrollDefault(staffId: number): Promise<PayrollDefault[]>;
+    savePayrollDefault(data: DeepPartial<PayrollDefault>): Promise<DeepPartial<PayrollDefault> & PayrollDefault>;
+    savePayrollApplied(data: DeepPartial<PayrollApplied>): Promise<DeepPartial<PayrollApplied> & PayrollApplied>;
+    createOrUpdatePayrollApplied(staffId: number, month: string, data: DeepPartial<PayrollApplied>): Promise<PayrollApplied>;
+    createOrUpdatePayrollDefault(staffId: number, month: string, data: DeepPartial<PayrollDefault>): Promise<PayrollDefault>;
+    findByUser(userId: number): Promise<Staff[]>;
+    findAll(): Promise<Staff[]>;
+    findAllWithAttendenceBetween(start: Date, end: Date): Promise<Staff[]>;
+    findAttendanceType(type: string): Promise<AttendanceType>;
+    findAllAttendanceTypes(): Promise<AttendanceType[]>;
+    findAttendanceTypeOrThrow(type: string): Promise<AttendanceType>;
+    findManyAttendance(staffId: number): Promise<StaffAttendance[]>;
+    findManyAttendanceByType(name: attendanceType, options?: {
+        staffId?: number;
+        branchId?: number;
+        end?: Date;
+    }): Promise<StaffAttendance[]>;
+    findManyAttendanceBetweenByOrganisation(organisationId: number, branchId: number, start: Date, end: Date): Promise<StaffAttendance[]>;
+    findManyAttendanceBetween(staffId: number, start: Date, end: Date): Promise<StaffAttendance[]>;
+    findOneAttendanceBetween(staffId: number, start: Date, end: Date): Promise<StaffAttendance>;
+    findByOrganisationBranch(organisationBranch: number, filter?: {
+        month?: string;
+        sort: staffShortByTypes;
+    }): Promise<Staff[]>;
+    findByOrganisationBranchWithAttendance(organisationId: number, branchId: number, start: Date, end: Date): Promise<Staff[]>;
+    findByOrganisationBranchWithAttendanceReport(organisationId: number, branchId: number, start: Date, end: Date): Promise<Staff[]>;
+    findDocumentsByOrganisationBranch(organisationId: number, branchId: number): Promise<Staff[]>;
+    findOne(id: number): Promise<Staff>;
+    findOneWithRelations(id: number, options?: {
+        attendance?: {
+            start: Date;
+            end: Date;
+        };
+    }): Promise<Staff>;
+    findManyByBranchWithRelations(branchId: number, options?: {
+        attendance?: {
+            start: Date;
+            end: Date;
+        };
+        month: string;
+    }): Promise<Staff[]>;
+    findOneOrThrow(id: number): Promise<Staff>;
+    findOneByOrganisationAndPin(organisationId: number, pin: string): Promise<Staff>;
+    update(id: number, data: DeepPartial<Staff>): Promise<UpdateResult>;
+    remove(id: number): Promise<import("typeorm").DeleteResult>;
+    removeAll(): Promise<import("typeorm").DeleteResult>;
+    removeAllAttendance(): Promise<import("typeorm").DeleteResult>;
+    removeAttendance(id: number): Promise<import("typeorm").DeleteResult>;
+    removeAllPayroll(): Promise<{
+        payrollDefault: import("typeorm").DeleteResult;
+        payrollApplied: import("typeorm").DeleteResult;
+    }>;
+    generateUniqueOTPByOrganisation(organisationId: number): Promise<string>;
+    getDayStartAndEnd(date?: Date): {
+        start: Date;
+        end: Date;
+        weekDay: number;
+        month: number;
+        year: number;
+        daysInMonth: number;
+        monthString: string;
+        monthYear: number;
+    };
+    getMonthStartAndEnd(date?: Date): MonthDetails;
+}

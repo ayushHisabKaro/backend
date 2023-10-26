@@ -1,0 +1,30 @@
+import { User } from '../../user/entities/user.entity';
+import OrganisationBranch from './organisationBranch.entity';
+import OrganisationPartner from './organisationPartner.entity';
+import Job from '../../hiring/entities/job.entity';
+import OrganisationShift from './organisationShfit.entity';
+import Staff from '../../staff/entities/staff.entity';
+export default class Organisation {
+    id: number;
+    name: string;
+    imageUrl: string;
+    createdBy: User;
+    address: string;
+    state: string;
+    city: string;
+    pinCode: string;
+    landmark: string;
+    weekelyOff1: number;
+    weekelyOff2: number;
+    shifts: OrganisationShift[];
+    industrySector: string;
+    branch: OrganisationBranch[];
+    staff: Staff[];
+    jobs: Job[];
+    gstNumber: string;
+    gstFileUrl: string;
+    panNumber: string;
+    panFileUrl: string;
+    partners: OrganisationPartner[];
+    createdAt: Date;
+}

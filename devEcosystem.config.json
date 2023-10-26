@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "hk-dev",
+      "script": "node --max-old-space-size=8192 dist/src/main.js",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "time": true,
+      "env": {
+        "ENV": "DEV",
+        "PORT": 4002
+      }
+    }
+  ]
+}

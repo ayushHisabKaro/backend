@@ -1,0 +1,23 @@
+export type jobsShortByTypes = 'recent_to_old' | 'old_to_recent' | 'high_to_low_salary' | 'low_to_high_salary';
+export declare const jobsSortByValues: string[];
+export type staffShortByTypes = 'viewAll' | 'high_to_low_salary' | 'low_to_high_salary';
+export declare const staffSortByValues: string[];
+export type jobFilterType = {
+    sort: jobsShortByTypes;
+    organisationName: string;
+    organisationIndustrySector: string;
+    jobTitle: string;
+    jobAddress: string;
+    jobState: string;
+    jobCity: string;
+    jobPinCode: string;
+    jobLandmark: string;
+    branchName: string;
+    branchAddress: string;
+    branchState: string;
+    branchCity: string;
+    branchPinCode: string;
+    branchLandmark: string;
+    location: string;
+    searchAll: string;
+};

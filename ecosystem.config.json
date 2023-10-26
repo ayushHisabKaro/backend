@@ -1,0 +1,16 @@
+{
+  "apps": [
+    {
+      "name": "hk-prod",
+      "script": "node dist/src/main.js",
+      "instances": 1,
+      "autorestart": true,
+      "watch": false,
+      "time": true,
+      "env": {
+        "ENV": "PROD",
+        "PORT": 4000
+      }
+    }
+  ]
+}

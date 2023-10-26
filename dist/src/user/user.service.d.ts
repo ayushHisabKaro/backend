@@ -1,0 +1,36 @@
+import { DeepPartial, Repository } from 'typeorm';
+import { CreateRoleDto } from './dto/create-user.dto';
+import { User } from './entities/user.entity';
+import Role from './entities/role.entity';
+import UserLanguage from './entities/UserLanguage';
+export declare class UserService {
+    private userRepository;
+    private roleRepository;
+    private userLanguageRepository;
+    constructor(userRepository: Repository<User>, roleRepository: Repository<Role>, userLanguageRepository: Repository<UserLanguage>);
+    create(data: DeepPartial<User>): User;
+    save(data: User): Promise<User>;
+    createLanguage(data: DeepPartial<UserLanguage>): Promise<DeepPartial<UserLanguage> & UserLanguage>;
+    findAll(): Promise<User[]>;
+    findOneByEmail(email: string): Promise<User>;
+    findOneByEmailExceptAndThrow(email: string, userId: number): Promise<User>;
+    findOneByPhoneNumber(phoneNumber: string): Promise<User | null>;
+    findOneByBothPhoneNumber(phoneNumber: string): Promise<User | null>;
+    findOneByBothPhoneNumbersExceptAndThrow(phoneNumber: string, userId: number): Promise<User | null>;
+    findManyByBothPhoneNumbers(phoneNumbers: string[]): Promise<User[]>;
+    findByPhoneNumberWithRelations(phoneNumber: string): Promise<User | null>;
+    findByBothPhoneNumberWithRelations(phoneNumber: string): Promise<User | null>;
+    createRole(createRoleDto: CreateRoleDto): Promise<Role>;
+    findAllRoles(): Promise<Role[]>;
+    findRoleByName(name: string): Promise<Role | null>;
+    findEmailExceptUser(email: string, userId: number): Promise<User | null>;
+    findLanguageByCode(code: string): Promise<UserLanguage | null>;
+    findLanguageByCodeOrThrow(code: string): Promise<UserLanguage | null>;
+    findOne(id: number): Promise<User>;
+    findOneWithRelations(id: number): Promise<User>;
+    findOneOrThrow(id: number): Promise<User>;
+    findRoleOrFail(name: string): Promise<Role>;
+    findOneWithRole(id: number): Promise<User>;
+    update(id: number, data: DeepPartial<User>): Promise<import("typeorm").UpdateResult>;
+    remove(id: number): Promise<import("typeorm").DeleteResult>;
+}

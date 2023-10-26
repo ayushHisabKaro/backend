@@ -1,0 +1,36 @@
+import { Resume } from '../../resume/entities/resume.entity';
+import Role from './role.entity';
+import Organisation from '../../organisation/entities/organisation.entity';
+import OrganisationPartner from '../../organisation/entities/organisationPartner.entity';
+import UserLanguage from './UserLanguage';
+import JobApplied from '../../hiring/entities/jobApplied.entity';
+import JobBookmarked from '../../hiring/entities/jobBookmark.entity';
+import JobShortlisted from '../../hiring/entities/jobShortlisted.entity';
+import Notification from '../../notification/entities/notification.entity';
+import Staff from '../../staff/entities/staff.entity';
+import StaffAttendance from '../../staff/entities/staffAttendance.entity';
+import OrganisationJoinRequest from '../../organisation/entities/organisationJoinRequest.entity';
+export declare class User {
+    id: number;
+    role: Role;
+    resume: Resume;
+    organisations: Organisation[];
+    organisationPartner: OrganisationPartner[];
+    email: string;
+    name: string;
+    phoneNumber: string;
+    alternatePhoneNumber: string;
+    imageUrl: string;
+    language: UserLanguage;
+    appVersion: number;
+    deviceName: string;
+    staff: Staff[];
+    jobsApplied: JobApplied[];
+    jobsBookmarked: JobBookmarked[];
+    jobsShortlisted: JobShortlisted[];
+    notifications: Notification[];
+    organisationJoinRequest: OrganisationJoinRequest[];
+    marksAttendance: StaffAttendance[];
+    lastActive: Date;
+    createdAt: Date;
+}
